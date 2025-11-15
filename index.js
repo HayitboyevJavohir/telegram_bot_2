@@ -1,15 +1,15 @@
-// index.js
+
 const TelegramBot = require("node-telegram-bot-api");
 
-// Tokenni shu yerga yozing
+
 const TOKEN = "8360898013:AAEgGc_EuLo-PDdXbrOXvUa-Ue4wSG5DnpY";
 
-// Botni ishga tushiramiz (polling rejimida)
+
 const bot = new TelegramBot(TOKEN, { polling: true });
 
 console.log("🤖 Bot ishga tushdi...");
 
-// /start komandasi uchun handler
+
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const firstName = msg.chat.first_name || "Foydalanuvchi";
@@ -39,7 +39,6 @@ Bu bot orqali siz:
   });
 });
 
-// Oddiy xabarlar uchun handler
 bot.on("message", (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
@@ -127,7 +126,6 @@ Iltimos, bu yerda markazimiz haqidagi fikr va takliflaringizni yozib qoldiring.`
   }
 });
 
-// Inline tugmalar uchun callback handler
 bot.on("callback_query", (query) => {
   const chatId = query.message.chat.id;
   const data = query.data;
