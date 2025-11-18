@@ -90,7 +90,7 @@ yuqori sifatli ta'lim beradi.
       bot.sendMessage(
         chatId,
         `✍️ Royxatdan otish uchun quyidagi havola orqali ariza topshiring:
-👉 [Royxatdan otish shakli](https://forms.gle/example)
+
 
 Yoki admin bilan boglaning: @Admin100x`,
         { parse_mode: "Markdown" }
@@ -131,11 +131,11 @@ bot.on("callback_query", (query) => {
   const data = query.data;
 
   const courseInfo = {
-    english: "🇬🇧 *Ingliz tili kursi*\n\n📆 Muddat: 3 oy\n💰 Narx: 350.000 som/oy\👨‍🏫 Daraja: Beginner — Advanced\n🕒 Darslar: Dushanba, Chorshanba, Juma",
-    russian: "🇷🇺 *Rus tili kursi*\n\n📆 Muddat: 3 oy\n💰 Narx: 350.000 som/oy\n🕒 Darslar: Seshanba, Payshanba, Shanba",
-    math: "🧮 *Matematika kursi*\n\n📆 Muddat: 4 oy\n💰 Narx: 400.000 som/oy\n🎯 Maqsad: Maktab va abituriyentlar uchun",
-    it: "💻 *Dasturlash kursi (Python, Web)*\n\n📆 Muddat: 6 oy\n💰 Narx: 500.000 som/oy\n🔧 Yonalishlar: Frontend, Backend, Python",
-    design: "🎨 *Grafik dizayn kursi*\n\n📆 Muddat: 5 oy\n💰 Narx: 450.000 som/oy\n📚 Dasturlar: Photoshop, Illustrator, Figma",
+    english: "🇬🇧 Ingliz tili kursi\n\n📆 Muddat: 3 oy\n💰 Narx: 350.000 som/oy\👨‍🏫 Daraja: Beginner — Advanced\n🕒 Darslar: Dushanba, Chorshanba, Juma",
+    russian: "🇷🇺 Rus tili kursi\n\n📆 Muddat: 3 oy\n💰 Narx: 350.000 som/oy\n🕒 Darslar: Seshanba, Payshanba, Shanba",
+    math: "🧮 Matematika kursi\n\n📆 Muddat: 4 oy\n💰 Narx: 400.000 som/oy\n🎯 Maqsad: Maktab va abituriyentlar uchun",
+    it: "💻 Dasturlash kursi (Python, Web)\n\n📆 Muddat: 6 oy\n💰 Narx: 500.000 som/oy\n🔧 Yonalishlar: Frontend, Backend, Python",
+    design: "🎨 Grafik dizayn kursi\n\n📆 Muddat: 5 oy\n💰 Narx: 450.000 som/oy\n📚 Dasturlar: Photoshop, Illustrator, Figma",
   };
 
   const info = courseInfo[data] || "Kurs haqida malumot topilmadi.";
