@@ -1,11 +1,15 @@
 
+//const TelegramBot = require("node-telegram-bot-api");
 const TelegramBot = require("node-telegram-bot-api");
+const { config } = require("dotenv");
+config();
 
-
-const TOKEN = "8360898013:AAEgGc_EuLo-PDdXbrOXvUa-Ue4wSG5DnpY";
-
+const TOKEN = process.env.BOT_TOKEN;
 
 const bot = new TelegramBot(TOKEN, { polling: true });
+
+
+
 
 console.log("🤖 Bot ishga tushdi...");
 
