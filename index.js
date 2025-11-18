@@ -1,5 +1,3 @@
-
-//const TelegramBot = require("node-telegram-bot-api");
 const TelegramBot = require("node-telegram-bot-api");
 const { config } = require("dotenv");
 config();
@@ -8,34 +6,33 @@ const TOKEN = process.env.BOT_TOKEN;
 
 const bot = new TelegramBot(TOKEN, { polling: true });
 
-
-
-
 console.log("🤖 Bot ishga tushdi...");
 
 
+// START
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const firstName = msg.chat.first_name || "Foydalanuvchi";
 
   const welcomeText = `
-👋 Assalomu alaykum, ${firstName}!
+👋 Assalomu alaykum, <b>${firstName}</b>!
 
-📚 100x Academy oquv markazining rasmiy botiga xush kelibsiz!
+📚 <b>100x Academy</b> o‘quv markazining rasmiy botiga xush kelibsiz!
 
 Bu bot orqali siz:
-• Kurslarimiz haqida batafsil malumot olasiz  
-• Kurslarga onlayn royxatdan otishingiz mumkin  
-• Jadval va tolovlar haqida bilib olasiz  
+• Kurslarimiz haqida batafsil ma’lumot olasiz  
+• Kurslarga onlayn ro‘yxatdan o‘tishingiz mumkin  
+• Jadval va to‘lovlar haqida bilib olasiz  
 
-👇 Quyidagi menyudan kerakli bolimni tanlang:
+👇 Quyidagi menyudan kerakli bo‘limni tanlang:
 `;
 
   bot.sendMessage(chatId, welcomeText, {
+    parse_mode: "HTML",
     reply_markup: {
       keyboard: [
-        [{ text: "📚 Kurslar" }, { text: "✍️ Royxatdan otish" }],
-        [{ text: " Markaz haqida" }, { text: "💬 Fikr bildirish" }],
+        [{ text: "📚 Kurslar" }, { text: "✍️ Ro‘yxatdan o‘tish" }],
+        [{ text: "ℹ️ Markaz haqida" }, { text: "💬 Fikr bildirish" }],
         [{ text: "❓ Yordam" }],
       ],
       resize_keyboard: true,
@@ -43,6 +40,9 @@ Bu bot orqali siz:
   });
 });
 
+
+
+// Asosiy menyu
 bot.on("message", (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
@@ -51,7 +51,7 @@ bot.on("message", (msg) => {
     case "📚 Kurslar":
       bot.sendMessage(
         chatId,
-        `🎓 Bizning oquv markazimizda quyidagi kurslar mavjud:
+        `🎓 Bizning o‘quv markazimizda quyidagi kurslar mavjud:
 
 1️⃣ Ingliz tili  
 2️⃣ Rus tili  
@@ -59,7 +59,7 @@ bot.on("message", (msg) => {
 4️⃣ Dasturlash (Python, Web)  
 5️⃣ Grafik dizayn  
 
-👇 Kursni tanlang, batafsil malumot beraman:
+👇 Kursni tanlang, batafsil ma’lumot beraman:
         `,
         {
           reply_markup: {
@@ -75,29 +75,33 @@ bot.on("message", (msg) => {
       );
       break;
 
-    case " Markaz haqida":
+    case "ℹ️ Markaz haqida":
       bot.sendMessage(
         chatId,
-        `🏫 *100x Academy* — bu zamonaviy ta'lim markazi bolib,
-talabalarga til organish, dasturlash va dizayn sohalarida
-yuqori sifatli ta'lim beradi.
+        `
+🏫 <b>100x Academy</b> — bu zamonaviy ta’lim markazi bo‘lib,
+talabalarga til o‘rganish, dasturlash va dizayn yo‘nalishlarida
+yuqori sifatli ta’lim beradi.
 
-📍 Manzil: Urganch shahri, Al-Xorazmiy kochasi 45-uy  
-📞 Telefon: +998 90 123 45 67  
-🌐 Instagram: @100x_academy
+📍 <b>Manzil:</b> Urganch shahri, Al-Xorazmiy ko‘chasi 45-uy  
+📞 <b>Telefon:</b> +998 90 123 45 67  
+🌐 <b>Instagram:</b> @100x_academy
         `,
-        { parse_mode: "Markdown" }
+        { parse_mode: "HTML" }
       );
       break;
 
-    case "✍️ Royxatdan otish":
+    case "✍️ Ro‘yxatdan o‘tish":
       bot.sendMessage(
         chatId,
-        `✍️ Royxatdan otish uchun quyidagi havola orqali ariza topshiring:
+        `
+✍️ Ro‘yxatdan o‘tish uchun quyidagi havolani bosing:
 
+👉 <a href="https://forms.gle/example">Ro‘yxatdan o‘tish shakli</a>
 
-Yoki admin bilan boglaning: @Admin100x`,
-        { parse_mode: "Markdown" }
+Yoki admin bilan bog‘laning: @Admin100x
+        `,
+        { parse_mode: "HTML" }
       );
       break;
 
@@ -113,9 +117,13 @@ Iltimos, bu yerda markazimiz haqidagi fikr va takliflaringizni yozib qoldiring.`
     case "❓ Yordam":
       bot.sendMessage(
         chatId,
-        `🆘 Yordam uchun quyidagi manzil orqali boglaning:
+        `
+🆘 <b>Yordam uchun bog‘lanish:</b>
+
 📞 +998 90 123 45 67  
-📩 @Admin100x`
+📩 @Admin100x
+        `,
+        { parse_mode: "HTML" }
       );
       break;
 
@@ -123,26 +131,65 @@ Iltimos, bu yerda markazimiz haqidagi fikr va takliflaringizni yozib qoldiring.`
       if (!text.startsWith("/")) {
         bot.sendMessage(
           chatId,
-          `⚠️ Kechirasiz, bu buyruqni tushunmadim.\n/start buyrugini bosing va menyudan tanlang.`
+          `⚠️ Kechirasiz, bu buyruqni tushunmadim.\n/start buyrug‘ini bosing va menyudan tanlang.`
         );
       }
       break;
   }
 });
 
+
+
+// Kurslar haqida ma'lumot
 bot.on("callback_query", (query) => {
   const chatId = query.message.chat.id;
   const data = query.data;
 
   const courseInfo = {
-    english: "🇬🇧 Ingliz tili kursi\n\n📆 Muddat: 3 oy\n💰 Narx: 350.000 som/oy\👨‍🏫 Daraja: Beginner — Advanced\n🕒 Darslar: Dushanba, Chorshanba, Juma",
-    russian: "🇷🇺 Rus tili kursi\n\n📆 Muddat: 3 oy\n💰 Narx: 350.000 som/oy\n🕒 Darslar: Seshanba, Payshanba, Shanba",
-    math: "🧮 Matematika kursi\n\n📆 Muddat: 4 oy\n💰 Narx: 400.000 som/oy\n🎯 Maqsad: Maktab va abituriyentlar uchun",
-    it: "💻 Dasturlash kursi (Python, Web)\n\n📆 Muddat: 6 oy\n💰 Narx: 500.000 som/oy\n🔧 Yonalishlar: Frontend, Backend, Python",
-    design: "🎨 Grafik dizayn kursi\n\n📆 Muddat: 5 oy\n💰 Narx: 450.000 som/oy\n📚 Dasturlar: Photoshop, Illustrator, Figma",
+    english: `
+🇬🇧 <b>Ingliz tili kursi</b>
+
+📆 <b>Muddat:</b> 3 oy  
+💰 <b>Narx:</b> 350.000 so‘m/oy  
+👨‍🏫 <b>Daraja:</b> Beginner — Advanced  
+🕒 <b>Darslar:</b> Dushanba, Chorshanba, Juma
+`,
+
+    russian: `
+🇷🇺 <b>Rus tili kursi</b>
+
+📆 <b>Muddat:</b> 3 oy  
+💰 <b>Narx:</b> 350.000 so‘m/oy  
+🕒 <b>Darslar:</b> Seshanba, Payshanba, Shanba
+`,
+
+    math: `
+🧮 <b>Matematika kursi</b>
+
+📆 <b>Muddat:</b> 4 oy  
+💰 <b>Narx:</b> 400.000 so‘m/oy  
+🎯 <b>Maqsad:</b> Maktab o‘quvchilari va abituriyentlar uchun
+`,
+
+    it: `
+💻 <b>Dasturlash kursi</b>
+
+📆 <b>Muddat:</b> 6 oy  
+💰 <b>Narx:</b> 500.000 so‘m/oy  
+🔧 <b>Yo‘nalishlar:</b> Frontend, Backend, Python
+`,
+
+    design: `
+🎨 <b>Grafik dizayn kursi</b>
+
+📆 <b>Muddat:</b> 5 oy  
+💰 <b>Narx:</b> 450.000 so‘m/oy  
+📚 <b>Dasturlar:</b> Photoshop, Illustrator, Figma
+`,
   };
 
-  const info = courseInfo[data] || "Kurs haqida malumot topilmadi.";
-  bot.sendMessage(chatId, info, { parse_mode: "Markdown" });
+  const info = courseInfo[data] || "Kurs haqida ma’lumot topilmadi.";
+
+  bot.sendMessage(chatId, info, { parse_mode: "HTML" });
 });
 
