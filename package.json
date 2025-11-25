@@ -1,7 +1,7 @@
 {
   "name": "semifinal-project",
   "version": "1.0.0",
-  "description": "100x Academy Telegram bot",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
