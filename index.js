@@ -21,7 +21,6 @@ mongoose
 console.log("🤖 Bot ishga tushdi...");
 
 
-// START
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   const firstName = msg.chat.first_name || "Foydalanuvchi";
@@ -152,7 +151,7 @@ Iltimos, bu yerda markazimiz haqidagi fikr va takliflaringizni yozib qoldiring.`
 
 
 
-// Kurslar haqida ma'lumot
+
 bot.on("callback_query", (query) => {
   const chatId = query.message.chat.id;
   const data = query.data;
