@@ -43,7 +43,7 @@ Bu bot orqali siz:
     reply_markup: {
       keyboard: [
         [{ text: "📚 Kurslar" }, { text: "✍️ Ro'yxatdan o'tish" }],
-        [{ text: "i Markaz haqida" }, { text: "💬 Fikr bildirish" }],
+        [{ text: " Markaz haqida" }, { text: "💬 Fikr bildirish" }],
         [{ text: "❓ Yordam" }],
       ],
       resize_keyboard: true,
