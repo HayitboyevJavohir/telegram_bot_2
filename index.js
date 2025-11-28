@@ -2,6 +2,8 @@ const TelegramBot = require("node-telegram-bot-api");
 const { config } = require("dotenv");
 const { default: mongoose } = require("mongoose");
 config();
+import User from "./models/User";
+import onUsers from ".src/onUsers.js";
 
 const TOKEN = process.env.BOT_TOKEN;
 
