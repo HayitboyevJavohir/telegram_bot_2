@@ -1,4 +1,6 @@
+import { bot } from "../index.js";
 import User from "./models/User.js";
+
 
 async function onStart(chatId, firstName) {
   console.log("onStart...!", chatId);
@@ -8,13 +10,15 @@ async function onStart(chatId, firstName) {
   console.log(!userExists);
 
   if (!userExists) {
+
     const newUser = new User({
       telegramId: chatId,
       firstname: firstName,
     });
 
-    await newUser.save();
-    console.log("Yangi foydalanuvchi saqlandi!");
+    newUser.save();
   }
-}
 
+  bot.sendMessage(
+    chatId,)}
+    
