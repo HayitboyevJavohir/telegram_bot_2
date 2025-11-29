@@ -1,13 +1,16 @@
 import { onStart } from "./src/onStart.js";
-import { onRegister } from "./src/onRegister.js";
-import { onCourses } from "./src/onCourses.js";
+// import { onCourses } from "./src/onCourses.js";
 import mongoose from "mongoose";
 import User from "./src/models/User.js";
 import onUsers from "./src/onUsers.js";
 import { config } from "dotenv";
 
 
+
 config();
+
+
+
 
 bot.on("message", (msg) => {
   const chatId = msg.chat.id;
@@ -24,3 +27,4 @@ bot.on("message", (msg) => {
   }
 });
 
+export { bot }
